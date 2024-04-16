@@ -8,10 +8,12 @@ export async function createRecord(
     formData: FormData,
 ) {
     try {
-        await prisma.record.create({
+        const text = formData.get("text")?.toString() ?? "";
+
+        await prisma.logRecord.create({
             data: {
-                text: formData.get("text")?.toString(),
-                title: "Все записи",
+                text,
+                titleId: 1,
                 categoryId: 1,
             },
         });
